@@ -1,0 +1,25 @@
+version: "3"
+services:
+  selenium-firefox:
+    container_name: firefox
+    image: selenium/standalone-firefox:3.12.0-boron
+    volumes:
+       - /dev/shm:/dev/shm    
+    networks: 
+      - idwall-local
+  crawler_reddit_telegram:
+    build:
+      context: .
+      dockerfile: ./crawler-reddit-telegram.dockerfile      
+      args:
+        TELEGRAM_TOKEN: "${TELEGRAM_TOKEN}"
+        JAR_FILE: ./target/crawler-reddit-telegram.jar
+    image: luksrn/crawler-reddit-telegram
+    container_name: crawler-reddit-telegram
+    networks: 
+      - idwall-local
+    depends_on:
+      - "selenium-firefox"
+networks: 
+  idwall-local:
+    driver: bridge 
