@@ -1,31 +1,36 @@
 package co.idwall.crawler.reddit.pages;
 
+import co.idwall.crawler.common.Page;
+import co.idwall.crawler.common.PageElement;
+import co.idwall.crawler.selenium.SeleniumPage;
+import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+public class SubRedditSeleniumPage  {
 
-import co.idwall.crawler.selenium.Page;
-
-public class SubRedditPage extends Page {
-
+	private Page page;
 	private String subReddit;
 	
-	public SubRedditPage(WebDriver webDriver, String subReddit) {
-		super(webDriver, "https://old.reddit.com/r/" + subReddit);
+	public SubRedditSeleniumPage(WebDriver webDriver, String subReddit) {
+		page = new SeleniumPage(webDriver, "https://old.reddit.com/r/" + subReddit);
 		this.subReddit = subReddit;
 	}
-	
+
+	public void go(){
+		page.go();
+	}
+
 	public HeaderSubRedditPageElement header() {
-		return findByCssSelector("#header")
+		return page.findByCssSelector("#header")
 				.map(HeaderSubRedditPageElement::new)
 				.get();
 	}
 	
 	public List<PostPageElement> findPosts(){
-		return findAllByCssSelector("div[data-subreddit]")
+		return page.findAllByCssSelector("div[data-subreddit]")
 				.stream()				
 				.map(PostPageElement::new)
 				.collect(Collectors.toList());
@@ -36,7 +41,7 @@ public class SubRedditPage extends Page {
 	}
 	
 	public void nextPage() {
-		findByCssSelector(".next-button a").ifPresent(WebElement::click);
+		page.findByCssSelector(".next-button a").ifPresent(PageElement::click);
 	}
 	
 	public String getSubReddit() {

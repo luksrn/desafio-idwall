@@ -2,6 +2,7 @@ package co.idwall.crawlerconsole;
 
 import java.util.Arrays;
 
+import co.idwall.crawler.reddit.pages.SubRedditSeleniumPage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.util.StringUtils;
 
 import co.idwall.crawler.reddit.SubRedditPostSearchResult;
 import co.idwall.crawler.reddit.crawlers.SubRedditPageCrawler;
-import co.idwall.crawler.reddit.pages.SubRedditPage;
 import co.idwall.crawler.selenium.WebDriverProvider;
 
 @Component
@@ -42,7 +42,7 @@ public class CrawlerConsoleCommandLineRunner implements CommandLineRunner {
 			 
         Arrays.asList(subreddits.split(";"))
 				.parallelStream()
-	        	.map( subReddit -> new SubRedditPage(webDriverProvider.get(), subReddit) )
+	        	.map( subReddit -> new SubRedditSeleniumPage(webDriverProvider.get(), subReddit) )
 	        	.map(SubRedditPageCrawler::new)
 	        	.map( crawler -> crawler.findSubRedditTopicsBy(this.upvotes) )
 	        	.forEach(this::print);

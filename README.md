@@ -399,7 +399,7 @@ package co.idwall.crawler.telegram.bots.handlers;
 ...
 import co.idwall.crawler.reddit.SubRedditPostSearchResult;
 import co.idwall.crawler.reddit.crawlers.SubRedditPageCrawler;
-import co.idwall.crawler.reddit.pages.SubRedditPage;
+import co.idwall.crawler.reddit.pages.SubRedditSeleniumPage;
 import co.idwall.crawler.selenium.WebDriverProvider;
 
 @Component

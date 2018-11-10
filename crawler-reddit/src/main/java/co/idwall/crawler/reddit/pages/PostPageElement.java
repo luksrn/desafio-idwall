@@ -1,36 +1,36 @@
 package co.idwall.crawler.reddit.pages;
 
-import org.openqa.selenium.WebElement;
-
+import co.idwall.crawler.common.PageElement;
 import co.idwall.crawler.reddit.Link;
 import co.idwall.crawler.reddit.SubRedditPost;
-import co.idwall.crawler.selenium.PageElement;
 
-public class PostPageElement extends PageElement {
+public class PostPageElement {
 
-	public PostPageElement(WebElement webElement) {
-		super(webElement);
+	private PageElement pageElement;
+
+	public PostPageElement(PageElement pageElement) {
+		this.pageElement = pageElement;
 	}
 	
 	public boolean isPromoted() {
-		return findByCssSelector(".sponsored-indicator").isPresent();
+		return pageElement.findByCssSelector(".sponsored-indicator").isPresent();
 	}
 
 	public Long getUpvotes() {
-		return findByCssSelector(".score.unvoted[title]")
+		return pageElement.findByCssSelector(".score.unvoted[title]")
 			.map( we -> we.getAttribute("title") )
 			.map( Long::parseLong )
 			.orElse(0L);
 	}
 
 	public String getTitle() {
-		return findByCssSelector("a[data-event-action='title']")
-			.map(WebElement::getText)
+		return pageElement.findByCssSelector("a[data-event-action='title']")
+			.map(PageElement::getText)
 			.get();
 	}
 
 	public Link getSelfLink() {
-		return findByCssSelector("a[data-event-action='title']")
+		return pageElement.findByCssSelector("a[data-event-action='title']")
 				.map( we -> we.getAttribute("href"))
 				.map(Link::new)
 				.get();
@@ -38,7 +38,7 @@ public class PostPageElement extends PageElement {
 
 
 	public Link getCommentsLink() {		
-		return findByCssSelector(".comments")
+		return pageElement.findByCssSelector(".comments")
 			.map( we -> we.getAttribute("href"))
 			.map(Link::new)
 			.orElse(new Link("#"));

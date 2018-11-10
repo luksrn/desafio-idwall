@@ -22,12 +22,12 @@ import org.mockito.MockitoAnnotations;
 import co.idwall.crawler.reddit.SubRedditPost;
 import co.idwall.crawler.reddit.pages.HeaderSubRedditPageElement;
 import co.idwall.crawler.reddit.pages.PostPageElement;
-import co.idwall.crawler.reddit.pages.SubRedditPage;
+import co.idwall.crawler.reddit.pages.SubRedditSeleniumPage;
 
 public class SubRedditPageCrawlerTest {
 	
 	@Mock
-	SubRedditPage subRedditPage;
+    SubRedditSeleniumPage subRedditPage;
 	
 	@Mock
 	HeaderSubRedditPageElement headerRedditPage;

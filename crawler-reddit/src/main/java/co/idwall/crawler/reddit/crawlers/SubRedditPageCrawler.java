@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import co.idwall.crawler.reddit.SubRedditPost;
 import co.idwall.crawler.reddit.SubRedditPostSearchResult;
 import co.idwall.crawler.reddit.pages.PostPageElement;
-import co.idwall.crawler.reddit.pages.SubRedditPage;
+import co.idwall.crawler.reddit.pages.SubRedditSeleniumPage;
 
 public class SubRedditPageCrawler {
 	
-	private SubRedditPage subRedditPage;
+	private SubRedditSeleniumPage subRedditPage;
 	
-	public SubRedditPageCrawler(SubRedditPage page) {
+	public SubRedditPageCrawler(SubRedditSeleniumPage page) {
 		this.subRedditPage = page;
 	}
 

@@ -1,14 +1,15 @@
 package co.idwall.crawler.selenium;
 
+import co.idwall.crawler.common.Page;
 import org.openqa.selenium.WebDriver;
 
-public abstract class Page extends PageSearchContext {
+public class SeleniumPage extends SeleniumPageSearchContext implements Page {
 	
 	protected WebDriver webDriver;
 	
 	private String url;
 
-	public Page(WebDriver webDriver, String url) {
+	public SeleniumPage(WebDriver webDriver, String url) {
 		super(webDriver);
 		this.webDriver = webDriver;
 		this.url = url;
