@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import co.idwall.crawler.reddit.pages.SubRedditPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,12 +23,11 @@ import org.mockito.MockitoAnnotations;
 import co.idwall.crawler.reddit.SubRedditPost;
 import co.idwall.crawler.reddit.pages.HeaderSubRedditPageElement;
 import co.idwall.crawler.reddit.pages.PostPageElement;
-import co.idwall.crawler.reddit.pages.SubRedditSeleniumPage;
 
 public class SubRedditPageCrawlerTest {
 	
 	@Mock
-    SubRedditSeleniumPage subRedditPage;
+    SubRedditPage subRedditPage;
 	
 	@Mock
 	HeaderSubRedditPageElement headerRedditPage;

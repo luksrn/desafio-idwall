@@ -11,7 +11,7 @@ public class HeaderSubRedditPageElement {
 	}
 	
 	public void clickTop() {
-        pageElement.findByCssSelector(".tabmenu li:nth-child(5)")
+        pageElement.findByCssSelector(".tabmenu li:nth-child(5) a")
 			.ifPresent(PageElement::click);
 	}
 }

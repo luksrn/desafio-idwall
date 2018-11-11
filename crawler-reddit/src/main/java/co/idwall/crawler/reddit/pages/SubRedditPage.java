@@ -2,6 +2,8 @@ package co.idwall.crawler.reddit.pages;
 
 import co.idwall.crawler.common.Page;
 import co.idwall.crawler.common.PageElement;
+import co.idwall.crawler.jsoup.JsoupPage;
+import co.idwall.crawler.jsoup.JsoupWebDriver;
 import co.idwall.crawler.selenium.SeleniumPage;
 import org.openqa.selenium.WebDriver;
 
@@ -9,13 +11,18 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class SubRedditSeleniumPage  {
+public class SubRedditPage {
 
 	private Page page;
 	private String subReddit;
 	
-	public SubRedditSeleniumPage(WebDriver webDriver, String subReddit) {
+	public SubRedditPage(WebDriver webDriver, String subReddit) {
 		page = new SeleniumPage(webDriver, "https://old.reddit.com/r/" + subReddit);
+		this.subReddit = subReddit;
+	}
+
+	public SubRedditPage(String subReddit) {
+		page = new JsoupPage( new JsoupWebDriver(),"https://old.reddit.com/r/" + subReddit);
 		this.subReddit = subReddit;
 	}
 

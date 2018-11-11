@@ -1,11 +1,12 @@
-package co.idwall.crawler.selenium;
+package co.idwall.crawler.selenium.drivers;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import co.idwall.crawler.selenium.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class RemoteWebDriverProvider implements WebDriverProvider {
 

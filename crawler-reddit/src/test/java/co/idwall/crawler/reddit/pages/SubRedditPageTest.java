@@ -30,12 +30,12 @@ public class SubRedditPageTest {
 	@Captor
 	ArgumentCaptor<String> stringCaptor;
 	
-	SubRedditSeleniumPage instance;
+	SubRedditPage instance;
 	
 	@Before
 	public void init(){
     	MockitoAnnotations.initMocks(this);
-    	instance = new SubRedditSeleniumPage(webDriver,"cats");
+    	instance = new SubRedditPage(webDriver,"cats");
 	}
 	
 	@Test

@@ -1,6 +1,7 @@
 package co.idwall.crawler.selenium;
 
 import co.idwall.crawler.common.PageElement;
+import co.idwall.crawler.common.PageSearchContext;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class SeleniumPageSearchContext implements co.idwall.crawler.common.PageSearchContext {
+public class SeleniumPageSearchContext implements PageSearchContext {
 
 	private SearchContext seleniumSearchContext;
 	
