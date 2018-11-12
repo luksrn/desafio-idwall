@@ -8,11 +8,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class CrawlerConsoleApplication {
 
-/*	@Configuration
+	/*@Configuration
 	static class Config {
 		
 		@Value("${selenium.url}")
@@ -22,6 +23,7 @@ public class CrawlerConsoleApplication {
 		public WebDriverProvider webDriverProvider() {
 			return new RemoteWebDriverProvider(urlSelenium, DesiredCapabilities.firefox());
 		}
+
 	}*/
 	
 	public static void main(String[] args) {

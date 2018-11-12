@@ -15,7 +15,7 @@ public class SubRedditPage {
 
 	private Page page;
 	private String subReddit;
-	
+
 	public SubRedditPage(WebDriver webDriver, String subReddit) {
 		page = new SeleniumPage(webDriver, "https://old.reddit.com/r/" + subReddit);
 		this.subReddit = subReddit;
