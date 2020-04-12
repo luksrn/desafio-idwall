@@ -1,17 +1,17 @@
 package co.idwall.crawler.reddit.pages;
 
-import org.openqa.selenium.WebElement;
+import co.idwall.crawler.common.PageElement;
 
-import co.idwall.crawler.selenium.PageElement;
+public class HeaderSubRedditPageElement {
 
-public class HeaderSubRedditPageElement  extends PageElement {
+    private PageElement pageElement;
 
-	public HeaderSubRedditPageElement(WebElement webElement) {
-		super(webElement);
+    public HeaderSubRedditPageElement(PageElement pageElement) {
+		this.pageElement = pageElement;
 	}
 	
 	public void clickTop() {
-		findByCssSelector(".tabmenu li:nth-child(5)")
-			.ifPresent(WebElement::click);
+        pageElement.findByCssSelector(".tabmenu li:nth-child(5) a")
+			.ifPresent(PageElement::click);
 	}
 }

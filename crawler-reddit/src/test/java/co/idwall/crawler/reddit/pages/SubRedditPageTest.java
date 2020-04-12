@@ -21,7 +21,7 @@ import org.openqa.selenium.WebElement;
 
 public class SubRedditPageTest {
 	
-	@Mock
+	/*@Mock
 	WebDriver webDriver;
 	
 	@Captor
@@ -84,5 +84,5 @@ public class SubRedditPageTest {
 		assertEquals(divPostA, posts.get(0).getWebElement());
 		assertEquals(divPostB, posts.get(1).getWebElement());
 		
-	}
+	}*/
 }

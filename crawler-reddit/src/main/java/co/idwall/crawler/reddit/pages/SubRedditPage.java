@@ -1,31 +1,44 @@
 package co.idwall.crawler.reddit.pages;
 
+import co.idwall.crawler.common.Page;
+import co.idwall.crawler.common.PageElement;
+import co.idwall.crawler.jsoup.JsoupPage;
+import co.idwall.crawler.jsoup.JsoupWebDriver;
+import co.idwall.crawler.selenium.SeleniumPage;
+import co.idwall.crawler.selenium.WebDriverProvider;
+import org.openqa.selenium.WebDriver;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+public class SubRedditPage {
 
-import co.idwall.crawler.selenium.Page;
-
-public class SubRedditPage extends Page {
-
+	private Page page;
 	private String subReddit;
-	
-	public SubRedditPage(WebDriver webDriver, String subReddit) {
-		super(webDriver, "https://old.reddit.com/r/" + subReddit);
+
+	public SubRedditPage(WebDriverProvider webDriverProvider, String subReddit) {
+		page = new SeleniumPage((WebDriver) webDriverProvider.get(), "https://old.reddit.com/r/" + subReddit);
 		this.subReddit = subReddit;
 	}
-	
+
+	public SubRedditPage(String subReddit) {
+		page = new JsoupPage( new JsoupWebDriver(),"https://old.reddit.com/r/" + subReddit);
+		this.subReddit = subReddit;
+	}
+
+	public void go(){
+		page.go();
+	}
+
 	public HeaderSubRedditPageElement header() {
-		return findByCssSelector("#header")
+		return page.findByCssSelector("#header")
 				.map(HeaderSubRedditPageElement::new)
 				.get();
 	}
 	
 	public List<PostPageElement> findPosts(){
-		return findAllByCssSelector("div[data-subreddit]")
+		return page.findAllByCssSelector("div[data-subreddit]")
 				.stream()				
 				.map(PostPageElement::new)
 				.collect(Collectors.toList());
@@ -36,7 +49,7 @@ public class SubRedditPage extends Page {
 	}
 	
 	public void nextPage() {
-		findByCssSelector(".next-button a").ifPresent(WebElement::click);
+		page.findByCssSelector(".next-button a").ifPresent(PageElement::click);
 	}
 	
 	public String getSubReddit() {

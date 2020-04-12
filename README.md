@@ -11,6 +11,24 @@ O asciicast a seguir é uma apresentação dos resultados do desefio. Há també
 
 [![Nada Pra Fazer Bot](telegram.png)](https://www.youtube.com/watch?v=wwNMSc79-F8)
 
+**OBS**: Os videos demonstrativos e toda a documentação é utilizando o Selenium como runner do crawler.
+Há uma abstração e implementação que permite utilizar o Jsoup, para exemplificar o impacto de desempenho da utilização
+do Selenium vs Jsoup, tenho um exemplo de execução:
+
+**Senelium**
+
+* Início do Cralwer: 22:20:31.428
+* Fim do Crawler: 22:21:04.929
+* Total: **33 segundos** 
+
+**Jsoup**
+* Início do Crawler: 22:15:32.511
+* Fim do Crawler: 22:15:38.004
+ * Total: **6 segundos**
+ 
+ Pela melhora significativa do Jsoup, o projeto foi alterado para executar por padrão com o Jsoup como _runner_. 
+ Para executar com o Selenium, deve-se utilizar o profile _selenium_.
+
 ## Estrutura do projeto
 
 O projeto foi estruturado como módulos Maven sendo eles:
@@ -79,7 +97,7 @@ $ java -jar crawler-reddit-console/target/crawler-reddit-console.jar --crawler.r
 Neste exemplo, temos os seguintes parâmetros informados:
 
 * **--crawler.reddit.upvotes=1000**  Define qual será o valor de upvotes utilizados para filtrar as threads dos subreddits informados em _crawler.reddit.subreddits_. O valor padrão é 5000
-* **--crawler.reddit.subreddits=cats** Define quais serão os subreddits pesquisados pelo crawler. O valor padrão é cats;wordnews;askreddit
+* **--crawler.reddit.subreddits=cats** Define quais serão os subreddits pesquisados pelo crawler. O valor padrão é cats;worldnews;askreddit
 
 A saída desse programa é apresentada no console, por exemplo:
 

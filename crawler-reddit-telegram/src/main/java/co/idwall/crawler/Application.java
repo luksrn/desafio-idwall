@@ -1,7 +1,7 @@
 package co.idwall.crawler;
 
-import java.util.List;
-
+import co.idwall.crawler.selenium.WebDriverProvider;
+import co.idwall.crawler.selenium.drivers.RemoteWebDriverProvider;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +13,7 @@ import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.generics.LongPollingBot;
 
-import co.idwall.crawler.selenium.RemoteWebDriverProvider;
-import co.idwall.crawler.selenium.WebDriverProvider;
+import java.util.List;
 
 @SpringBootApplication
 public class Application {

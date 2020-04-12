@@ -1,5 +1,6 @@
-package co.idwall.crawler.selenium;
+package co.idwall.crawler.selenium.drivers;
 
+import co.idwall.crawler.selenium.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 

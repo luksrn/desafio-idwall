@@ -1,7 +1,9 @@
 package co.idwall.crawlerconsole;
 
-import java.util.Arrays;
-
+import co.idwall.crawler.reddit.SubRedditPostSearchResult;
+import co.idwall.crawler.reddit.crawlers.SubRedditPageCrawler;
+import co.idwall.crawler.reddit.pages.SubRedditPage;
+import co.idwall.crawler.selenium.WebDriverProvider;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import co.idwall.crawler.reddit.SubRedditPostSearchResult;
-import co.idwall.crawler.reddit.crawlers.SubRedditPageCrawler;
-import co.idwall.crawler.reddit.pages.SubRedditPage;
-import co.idwall.crawler.selenium.WebDriverProvider;
+import java.util.Arrays;
 
 @Component
 public class CrawlerConsoleCommandLineRunner implements CommandLineRunner {
@@ -25,10 +24,10 @@ public class CrawlerConsoleCommandLineRunner implements CommandLineRunner {
 	
 	@Value("${crawler.reddit.subreddits}")
 	private String subreddits;
-	
+
 	@Autowired
 	private WebDriverProvider webDriverProvider;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -39,14 +38,20 @@ public class CrawlerConsoleCommandLineRunner implements CommandLineRunner {
 		LOGGER.info("Iniciando subreddits crawller...");
 		LOGGER.info("\t * Upvotes = " + upvotes );
 		LOGGER.info("\t * SubReddits = " + subreddits );
-			 
-        Arrays.asList(subreddits.split(";"))
-				.parallelStream()
-	        	.map( subReddit -> new SubRedditPage(webDriverProvider.get(), subReddit) )
-	        	.map(SubRedditPageCrawler::new)
-	        	.map( crawler -> crawler.findSubRedditTopicsBy(this.upvotes) )
-	        	.forEach(this::print);
-        	
+
+		try {
+			Arrays.asList(subreddits.split(";"))
+					.parallelStream()
+					//.map( subReddit -> new SubRedditPage(webDriverProvider.get(), subReddit) )
+					.map(subReddit -> new SubRedditPage(subReddit))
+					.map(SubRedditPageCrawler::new)
+					.map(crawler -> crawler.findSubRedditTopicsBy(this.upvotes))
+					.forEach(this::print);
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
+        LOGGER.info("Finalizado.");
 	}
 
 	private void print(SubRedditPostSearchResult result) {

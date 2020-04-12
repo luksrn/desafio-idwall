@@ -21,7 +21,7 @@ public class PageTest {
 	public void testIfGoTakesUserToAnotherPage() {
 		
 		//given
-		FakePage fake = new FakePage(webDriver, "https://fake.com");
+		FakeSeleniumPage fake = new FakeSeleniumPage(webDriver, "https://fake.com");
 		
 		//when
 		fake.go();
@@ -30,9 +30,9 @@ public class PageTest {
 		Mockito.verify(webDriver).get("https://fake.com");			
 	}
 
-	class FakePage extends Page {
+	class FakeSeleniumPage extends SeleniumPage {
 
-		public FakePage(WebDriver webDriver, String url) {
+		public FakeSeleniumPage(WebDriver webDriver, String url) {
 			super(webDriver, url);
 		}
 	}
