@@ -25,7 +25,7 @@ public class HeaderSubRedditPageElementTest {
 		// given
 		HeaderSubRedditPageElement header = new HeaderSubRedditPageElement(pageElement);
 		PageElement topLink = mock(PageElement.class);
-		when(pageElement.findByCssSelector(".tabmenu li:nth-child(5)")).thenReturn(Optional.of(topLink));
+		when(pageElement.findByCssSelector(".tabmenu li:nth-child(5) a")).thenReturn(Optional.of(topLink));
 		
 		//when
 		header.clickTop();
